@@ -1,0 +1,16 @@
+{
+  "name": "module-generator",
+  "version": "1.0.0",
+  "description": "HMVC module generator for react-typescript application",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hmvc",
+    "hmvc-generator",
+    "module-generator"
+  ],
+  "author": "Mohamed Attar",
+  "license": "MIT"
+}
