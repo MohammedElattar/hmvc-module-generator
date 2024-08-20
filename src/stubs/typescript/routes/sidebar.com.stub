@@ -1,0 +1,13 @@
+import {Circle} from "react-feather";
+import {{MODULE_CAMEL_CASE}}Routes from "../constants/routes";
+
+const sideBar = [
+    {
+        id: "{{MODULE_CAMEL_CASE}}",
+        title: "{{MODULE_PLURAL_FRIENDLY_NAME}}",
+        icon: <Circle size={20} />,
+        navLink: {{MODULE_CAMEL_CASE}}Routes.TABLE
+    }
+];
+
+export default sideBar

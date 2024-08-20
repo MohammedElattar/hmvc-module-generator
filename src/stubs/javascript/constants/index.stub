@@ -1,0 +1,7 @@
+const {{CAMEL_CASE_NAME}}Routes = {
+    TABLE: '/{{ENDPOINT}}',
+    ADD: '/{{ENDPOINT}}/create',
+    EDIT: '/{{ENDPOINT}}/:id/edit'
+}
+
+export default {{CAMEL_CASE_NAME}}Routes;

@@ -1,0 +1,33 @@
+import DeleteDropDownItem from "../../../components/table/dropDownItems/DeleteDropDownItem.tsx";
+import TableActions from "../../../components/table/dropDownItems/TableActions.tsx";
+import EditDropDownItem from "../../../components/table/dropDownItems/EditDropDownItem.tsx";
+import {TableColumn} from "react-data-table-component";
+import {{MODULE_PASCAL_CASE}}TableObject from "../interfaces/{{MODULE_CAMEL_CASE}}TableObject.ts";
+
+const generateActions = (row: {{MODULE_PASCAL_CASE}}TableObject, props) => {
+    const {handleDelete, routeParser} = props;
+    const actions = [
+        <EditDropDownItem tag='a' href={routeParser(row)} key={0}/>,
+        <DeleteDropDownItem handleDelete={() => handleDelete(row.id)} key={1}/>
+    ]
+
+    return <TableActions actions={actions}/>
+}
+
+const getColumns = (props): TableColumn<{{MODULE_PASCAL_CASE}}TableObject>[] => {
+    return [
+        {
+            sortable: true,
+            name: 'ID',
+            minWidth: '250px',
+            selector: row => row.id
+        },
+        {
+            name: 'Actions',
+            minWidth: '100px',
+            cell: row => generateActions(row, props)
+        }
+    ];
+}
+
+export default getColumns

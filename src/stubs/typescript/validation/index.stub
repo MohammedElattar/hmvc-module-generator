@@ -1,0 +1,7 @@
+import generateSchema from "../../../utility/helpers/validationRuleHelper";
+
+const {{MODULE_CAMEL_CASE}}Schema = generateSchema({
+    // Validation goes here !
+});
+
+export default {{MODULE_CAMEL_CASE}}Schema

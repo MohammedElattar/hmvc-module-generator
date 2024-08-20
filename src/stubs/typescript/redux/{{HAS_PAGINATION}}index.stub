@@ -1,0 +1,41 @@
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {
+    defaultCrudInitialState,
+    setPaginationAction
+} from "../../../utility/helpers/reduxHelper";
+import {{MODULE_PASCAL_CASE}}State from "../interfaces/{{MODULE_CAMEL_CASE}}State.ts";
+import PaginationMetaObject from "../../../interfaces/paginationObject.ts";
+import {{MODULE_PASCAL_CASE}}Object from "../interfaces/{{MODULE_CAMEL_CASE}}Object.ts";
+import {{MODULE_PASCAL_CASE}}TableObject from "../interfaces/{{MODULE_CAMEL_CASE}}TableObject.ts";
+
+const initialState: {{MODULE_PASCAL_CASE}}State = defaultCrudInitialState()
+export const {{MODULE_CAMEL_CASE}}Slice = createSlice({
+    name: '{{MODULE_PLURALIZED_CASE}}',
+    initialState,
+    reducers: {
+        setAll{{MODULE_PLURALIZED_PASCAL_CASE}}MetaAction: (state, action: PayloadAction<PaginationMetaObject>) => {
+            state.all.meta = setPaginationAction(action.payload)
+        },
+        setAll{{MODULE_PLURALIZED_PASCAL_CASE}}Action: (state, action: PayloadAction<{{MODULE_PASCAL_CASE}}TableObject[]>) => {
+            state.all.data = action.payload;
+        },
+        setAll{{MODULE_PLURALIZED_PASCAL_CASE}}LoadingAction: (state, action: PayloadAction<boolean>) => {
+            state.all.loading = action.payload;
+        },
+        setOne{{MODULE_PASCAL_CASE}}Action: (state, action:  PayloadAction<{{MODULE_PASCAL_CASE}}Object>) => {
+            state.show.data = action.payload;
+        },
+        setOne{{MODULE_PASCAL_CASE}}LoadingAction: (state, action: PayloadAction<boolean>) => {
+            state.show.loading = action.payload;
+        }
+    }
+})
+
+export default {{MODULE_CAMEL_CASE}}Slice.reducer;
+export const {
+    setAll{{MODULE_PLURALIZED_PASCAL_CASE}}Action,
+    setAll{{MODULE_PLURALIZED_PASCAL_CASE}}MetaAction,
+    setAll{{MODULE_PLURALIZED_PASCAL_CASE}}LoadingAction,
+    setOne{{MODULE_PASCAL_CASE}}Action,
+    setOne{{MODULE_PASCAL_CASE}}LoadingAction,
+} = {{MODULE_CAMEL_CASE}}Slice.actions;

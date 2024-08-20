@@ -1,0 +1,5 @@
+import DefaultNonPaginatedState from "../../../interfaces/redux/defaultNonPaginatedState.ts";
+import {{MODULE_PASCAL_CASE}}Object from "./{{MODULE_CAMEL_CASE}}Object.ts";
+import {{MODULE_PASCAL_CASE}}TableObject from "./{{MODULE_CAMEL_CASE}}TableObject.ts";
+
+export default interface {{MODULE_PASCAL_CASE}}State extends DefaultNonPaginatedState<{{MODULE_PASCAL_CASE}}Object, {{MODULE_PASCAL_CASE}}TableObject>{}

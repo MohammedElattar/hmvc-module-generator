@@ -1,0 +1,44 @@
+import {useParams} from "react-router-dom";
+import {lazy, useEffect} from "react";
+import {buildFormikParams, formikInstance, generateFormikForm} from "../../../utility/formik/formikHelper";
+import use{{MODULE_PASCAL_CASE}}Logic from "../hooks/use{{MODULE_PASCAL_CASE}}Logic";
+import {Store{{MODULE_PASCAL_CASE}}, Update{{MODULE_PASCAL_CASE}}} from "../types/{{MODULE_CAMEL_CASE}}Form";
+import {{MODULE_CAMEL_CASE}}Schema from "../validation/index";
+
+const {{MODULE_PASCAL_CASE}}Form = lazy(() => import('../views/{{MODULE_CAMEL_CASE}}Form'))
+export const empty{{MODULE_PASCAL_CASE}}: Store{{MODULE_PASCAL_CASE}} = {
+    id: '',
+}
+
+const {{MODULE_PASCAL_CASE}}FormContainer = () => {
+    const {getOne{{MODULE_PASCAL_CASE}}Logic, one{{MODULE_PASCAL_CASE}}, oneLoading, update{{MODULE_PASCAL_CASE}}Logic, store{{MODULE_PASCAL_CASE}}Logic} = use{{MODULE_PASCAL_CASE}}Logic();
+    const {{{MODULE_LOCAL_ROUTE_ID}}: id} = useParams();
+    const inUpdate = id !== undefined;
+
+    const formik = formikInstance({
+        initialValues: !inUpdate ? empty{{MODULE_PASCAL_CASE}} : {
+            id: one{{MODULE_PASCAL_CASE}}.id,
+        },
+        validationSchema: {{MODULE_CAMEL_CASE}}Schema,
+        onSubmit: (values: Store{{MODULE_PASCAL_CASE}}|Update{{MODULE_PASCAL_CASE}}) => {
+            if (inUpdate) {
+                update{{MODULE_PASCAL_CASE}}Logic(values, id, buildFormikParams(formik))
+            } else {
+                store{{MODULE_PASCAL_CASE}}Logic(values, buildFormikParams(formik))
+            }
+        }});
+
+    useEffect(() => {
+        if (inUpdate) {
+            getOne{{MODULE_PASCAL_CASE}}Logic(id)
+        }
+    }, []);
+
+    return <{{MODULE_PASCAL_CASE}}Form
+        inUpdate={inUpdate}
+        formikObject={generateFormikForm(formik)}
+        loading={oneLoading}
+    />
+}
+
+export default {{MODULE_PASCAL_CASE}}FormContainer;

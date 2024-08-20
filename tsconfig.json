@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "target": "ES2023",
+    "moduleResolution": "Node10",
+    "strict": false, // Disable strict mode, allowing the use of 'any'
+    "noImplicitAny": false, // Explicitly allow 'any' type
+    "module": "CommonJS",
+    "declaration": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

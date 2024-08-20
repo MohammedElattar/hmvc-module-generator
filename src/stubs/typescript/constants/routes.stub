@@ -1,0 +1,7 @@
+const {{MODULE_CAMEL_CASE}}Routes = {
+    TABLE: '/{{MODULE_LOCAL_ROUTE}}',
+    ADD: '/{{MODULE_LOCAL_ROUTE}}/create',
+    EDIT: '/{{MODULE_LOCAL_ROUTE}}/:{{MODULE_LOCAL_ROUTE_ID}}/edit'
+}
+
+export default {{MODULE_CAMEL_CASE}}Routes;

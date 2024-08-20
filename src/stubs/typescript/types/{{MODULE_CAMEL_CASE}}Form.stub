@@ -1,0 +1,4 @@
+import {{MODULE_PASCAL_CASE}}Object from "../interfaces/{{MODULE_CAMEL_CASE}}Object";
+
+export type Store{{MODULE_PASCAL_CASE}} = Omit<{{MODULE_PASCAL_CASE}}Object, 'id'>
+export type Update{{MODULE_PASCAL_CASE}} = Store{{MODULE_PASCAL_CASE}};

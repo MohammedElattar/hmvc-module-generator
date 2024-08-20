@@ -1,0 +1,3 @@
+import {{MODULE_PASCAL_CASE}}Object from "./{{MODULE_CAMEL_CASE}}Object.ts";
+
+export default interface {{MODULE_PASCAL_CASE}}TableObject extends {{MODULE_PASCAL_CASE}}Object {}
