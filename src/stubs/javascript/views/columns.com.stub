@@ -1,0 +1,31 @@
+import DeleteDropDownItem from "../../../components/table/dropDownItems/DeleteDropDownItem";
+import TableActions from "../../../components/table/dropDownItems/TableActions";
+import EditDropDownItem from "../../../components/table/dropDownItems/EditDropDownItem";
+
+const generateActions = (row, props) => {
+    const { handleDelete, routeParser } = props;
+    const actions = [
+        <EditDropDownItem tag='a' href={routeParser(row)} key={0} />,
+        <DeleteDropDownItem handleDelete={() => handleDelete(row.id)} key={1} />
+    ];
+
+    return <TableActions actions={actions} />;
+};
+
+const getColumns = (props) => {
+    return [
+        {
+            sortable: true,
+            name: 'ID',
+            minWidth: '250px',
+            selector: row => row.id
+        },
+        {
+            name: 'Actions',
+            minWidth: '100px',
+            cell: row => generateActions(row, props)
+        }
+    ];
+};
+
+export default getColumns;

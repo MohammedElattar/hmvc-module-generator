@@ -1,0 +1,22 @@
+import { lazy, useEffect } from "react";
+import use{{MODULE_PASCAL_CASE}}Logic from "../hooks/use{{MODULE_PASCAL_CASE}}Logic";
+
+const {{MODULE_PASCAL_CASE}}Table = lazy(() => import('../views/{{MODULE_CAMEL_CASE}}Table'));
+
+const {{MODULE_PASCAL_CASE}}Container = () => {
+    const { all, allLoading, deleteLoading, getAll{{MODULE_PLURALIZED_PASCAL_CASE}}Logic, delete{{MODULE_PASCAL_CASE}}Logic } = use{{MODULE_PASCAL_CASE}}Logic();
+
+    useEffect(() => {
+        getAll{{MODULE_PLURALIZED_PASCAL_CASE}}Logic();
+    }, []);
+
+    return (
+        <{{MODULE_PASCAL_CASE}}Table
+            loading={allLoading || deleteLoading}
+            data={all}
+            handleDelete={delete{{MODULE_PASCAL_CASE}}Logic}
+        />
+    );
+};
+
+export default {{MODULE_PASCAL_CASE}}Container;

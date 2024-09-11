@@ -1,0 +1,17 @@
+import {toastLoader} from "../../../utility/helpers/toastHelper";
+
+const {{MODULE_PASCAL_CASE}}Form = ({inUpdate, formikObject, loading}) => {
+    const {handleSubmit, values, errors, handleBlur, handleChange, isSubmitting} = formikObject;
+
+    toastLoader(loading)
+
+    return (
+        <div>
+            <form>
+                <button>Submit</button>
+            </form>
+        </div>
+    )
+}
+
+export default {{MODULE_PASCAL_CASE}}Form

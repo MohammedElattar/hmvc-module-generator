@@ -1,0 +1,24 @@
+import usePagination, { generatePaginationObject } from "../../../utility/hooks/usePagination";
+import { lazy } from "react";
+import use{{MODULE_PASCAL_CASE}}Logic from "../hooks/use{{MODULE_PASCAL_CASE}}Logic";
+import { useSelector } from "react-redux";
+
+const {{MODULE_PASCAL_CASE}}Table = lazy(() => import('../views/{{MODULE_CAMEL_CASE}}Table'));
+
+const {{MODULE_PASCAL_CASE}}Container = () => {
+    const { all, meta, delete{{MODULE_PASCAL_CASE}}Logic, getAll{{MODULE_PLURALIZED_PASCAL_CASE}}Logic } = use{{MODULE_PASCAL_CASE}}Logic();
+    const object = usePagination(getAll{{MODULE_PLURALIZED_PASCAL_CASE}}Logic);
+    const tableLoading = useSelector((state) => state.{{REDUX_REDUCER_NAME}}.all.loading);
+    const deleteLoading = useSelector((state) => state.{{REDUX_REDUCER_NAME}}.deleteLoading);
+
+    return (
+        <{{MODULE_PASCAL_CASE}}Table
+            loading={tableLoading || deleteLoading}
+            data={all}
+            handleDelete={delete{{MODULE_PASCAL_CASE}}Logic}
+            paginationObject={generatePaginationObject(object, meta)}
+        />
+    );
+};
+
+export default {{MODULE_PASCAL_CASE}}Container;

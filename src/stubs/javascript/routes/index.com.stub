@@ -1,0 +1,21 @@
+import { lazy } from "react";
+import {{MODULE_CAMEL_CASE}}Routes from "../constants/routes";
+
+const {{MODULE_PASCAL_CASE}}Container = lazy(() => import('../containers/{{MODULE_PASCAL_CASE}}Container'));
+const {{MODULE_PASCAL_CASE}}FormContainer = lazy(() => import('../containers/{{MODULE_PASCAL_CASE}}FormContainer'))
+const {{MODULE_CAMEL_CASE}} = [
+    {
+        path: {{MODULE_CAMEL_CASE}}Routes.TABLE,
+        element: <{{MODULE_PASCAL_CASE}}Container/>
+    },
+    {
+        path: {{MODULE_CAMEL_CASE}}Routes.EDIT,
+        element: <{{MODULE_PASCAL_CASE}}FormContainer />
+    },
+    {
+        path: {{MODULE_CAMEL_CASE}}Routes.ADD,
+        element: <{{MODULE_PASCAL_CASE}}FormContainer />
+    }
+];
+
+export default {{MODULE_CAMEL_CASE}}

@@ -1,0 +1,32 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { defaultNonPaginatedState } from "../../../utility/helpers/reduxHelper";
+
+const initialState = defaultNonPaginatedState();
+
+export const {{MODULE_CAMEL_CASE}}Slice = createSlice({
+    name: '{{MODULE_PLURALIZED_CASE}}',
+    initialState,
+    reducers: {
+        setAll{{MODULE_PLURALIZED_PASCAL_CASE}}Action: (state, action) => {
+            state.all.data = action.payload;
+        },
+        setAll{{MODULE_PLURALIZED_PASCAL_CASE}}LoadingAction: (state, action) => {
+            state.all.loading = action.payload;
+        },
+        setOne{{MODULE_PASCAL_CASE}}Action: (state, action) => {
+            state.show.data = action.payload;
+        },
+        setOne{{MODULE_PASCAL_CASE}}LoadingAction: (state, action) => {
+            state.show.loading = action.payload;
+        }
+    }
+});
+
+export default {{MODULE_CAMEL_CASE}}Slice.reducer;
+
+export const {
+    setAll{{MODULE_PLURALIZED_PASCAL_CASE}}Action,
+    setAll{{MODULE_PLURALIZED_PASCAL_CASE}}LoadingAction,
+    setOne{{MODULE_PASCAL_CASE}}Action,
+    setOne{{MODULE_PASCAL_CASE}}LoadingAction,
+} = {{MODULE_CAMEL_CASE}}Slice.actions;

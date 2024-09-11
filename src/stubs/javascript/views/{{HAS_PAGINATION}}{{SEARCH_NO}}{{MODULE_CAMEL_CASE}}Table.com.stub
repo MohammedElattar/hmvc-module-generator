@@ -1,0 +1,29 @@
+import {toastLoader} from "../../../utility/helpers/toastHelper";
+import CustomTable from "../../../components/table/CustomTable";
+import getColumns from "./columns";
+import {parseRoute} from "../../../utility/helpers/routeHelper";
+import AddButton from "../../../components/table/AddButton";
+import {{MODULE_CAMEL_CASE}}Routes from "../constants/routes";
+import {{MODULE_PASCAL_CASE}}TableObject from "../interfaces/{{MODULE_CAMEL_CASE}}TableObject";
+
+const {{MODULE_PASCAL_CASE}}Table =  ({ data, paginationObject, handleDelete, loading }) => {
+    const buttons = [<AddButton to={{{MODULE_CAMEL_CASE}}Routes.ADD} key={0}/>]
+    const routeParser = (row) => {
+        const {id} = row;
+        return parseRoute({{MODULE_CAMEL_CASE}}Routes.EDIT, {id})
+    };
+
+    toastLoader(loading)
+
+    return <CustomTable
+        buttons={buttons}
+        columns={getColumns({ handleDelete, routeParser })}
+        data={data}
+        pagination={true}
+        searchable={false}
+        paginationObject={paginationObject}
+        title='{{MODULE_PLURAL_FRIENDLY_NAME}}'
+    />
+}
+
+export default {{MODULE_PASCAL_CASE}}Table

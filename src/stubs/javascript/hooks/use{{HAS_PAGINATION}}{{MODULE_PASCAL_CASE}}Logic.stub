@@ -1,0 +1,81 @@
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    setAll{{MODULE_PLURALIZED_PASCAL_CASE}}Action,
+    setAll{{MODULE_PLURALIZED_PASCAL_CASE}}LoadingAction,
+    setAll{{MODULE_PLURALIZED_PASCAL_CASE}}MetaAction,
+    setOne{{MODULE_PASCAL_CASE}}Action,
+    setOne{{MODULE_PASCAL_CASE}}LoadingAction
+} from "../redux";
+import axiosInstance from "../../../api/axiosInstance";
+import { formikErrorHandler } from "../../../utility/formik/formikHelper";
+import { getUniqueParams } from "../../../utility/helpers/routeHelper";
+import {{MODULE_CAMEL_CASE}}Routes from "../constants/routes";
+
+const use{{MODULE_PASCAL_CASE}}Logic = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const selector = useSelector((state) => state.{{REDUX_REDUCER_NAME}}),
+        all = selector.all.data,
+        meta = selector.all.meta,
+        one{{MODULE_PASCAL_CASE}} = selector.show.data,
+        oneLoading = selector.show.loading;
+
+    const getAll{{MODULE_PLURALIZED_PASCAL_CASE}}Logic = (params = undefined) => {
+        params = params === undefined ? getUniqueParams() : params;
+        dispatch(setAll{{MODULE_PLURALIZED_PASCAL_CASE}}LoadingAction(true));
+
+        axiosInstance.get('/{{API_ROUTE_NAME}}', { params }).then((response) => {
+            dispatch(setAll{{MODULE_PLURALIZED_PASCAL_CASE}}Action(response.data.data));
+            dispatch(setAll{{MODULE_PLURALIZED_PASCAL_CASE}}MetaAction(response.data.meta));
+        }).finally(() => dispatch(setAll{{MODULE_PLURALIZED_PASCAL_CASE}}LoadingAction(false)));
+    };
+
+    const getOne{{MODULE_PASCAL_CASE}}Logic = (id) => {
+        dispatch(setOne{{MODULE_PASCAL_CASE}}LoadingAction(true));
+
+        axiosInstance.get(`/{{API_ROUTE_NAME}}${id}`).then((response) => {
+            dispatch(setOne{{MODULE_PASCAL_CASE}}Action(response.data.data));
+        }).finally(() => dispatch(setOne{{MODULE_PASCAL_CASE}}LoadingAction(false)));
+    };
+
+    const store{{MODULE_PASCAL_CASE}}Logic = (values, formikObject) => {
+        const { setSubmitting } = formikObject;
+
+        setSubmitting(true);
+
+        axiosInstance.postForm('/{{API_ROUTE_NAME}}', values)
+            .then(() => navigate({{MODULE_CAMEL_CASE}}Routes.TABLE))
+            .catch((error) => formikErrorHandler(error.response.data, formikObject))
+            .finally(() => setSubmitting(false));
+    };
+
+    const update{{MODULE_PASCAL_CASE}}Logic = (values, id, formikObject) => {
+        const { setSubmitting } = formikObject;
+
+        setSubmitting(true);
+
+        axiosInstance.put(`/{{API_ROUTE_NAME}}/${id}`, values)
+            .then(() => navigate({{MODULE_CAMEL_CASE}}Routes.TABLE))
+            .catch((error) => formikErrorHandler(error.response.data, formikObject))
+            .finally(() => setSubmitting(false));
+    };
+
+    const delete{{MODULE_PASCAL_CASE}}Logic = (id) => {
+        axiosInstance.delete(`/{{API_ROUTE_NAME}}/${id}`).then(() => getAll{{MODULE_PLURALIZED_PASCAL_CASE}}Logic());
+    };
+
+    return {
+        all,
+        meta,
+        one{{MODULE_PASCAL_CASE}},
+        oneLoading,
+        getAll{{MODULE_PLURALIZED_PASCAL_CASE}}Logic,
+        store{{MODULE_PASCAL_CASE}}Logic,
+        update{{MODULE_PASCAL_CASE}}Logic,
+        delete{{MODULE_PASCAL_CASE}}Logic,
+        getOne{{MODULE_PASCAL_CASE}}Logic,
+    };
+};
+
+export default use{{MODULE_PASCAL_CASE}}Logic;
